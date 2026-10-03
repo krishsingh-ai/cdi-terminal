@@ -7,7 +7,7 @@ import type { SessionHistoryEntry } from '../../types/auth';
 
 function readSessionHistory(): SessionHistoryEntry[] {
   try {
-    const raw = localStorage.getItem('priorix_user_history') || localStorage.getItem('aux_session_history');
+    const raw = localStorage.getItem('aux_session_history');
     const list: SessionHistoryEntry[] = raw ? JSON.parse(raw) : [];
     return list
       .sort((a, b) => (b.logoutTime || 0) - (a.logoutTime || 0))
@@ -35,7 +35,6 @@ export const AdminSurveillanceModal: React.FC = () => {
       'Are you sure you want to permanently clear all recorded user session history? This action cannot be undone.'
     );
     if (confirmed) {
-      localStorage.removeItem('priorix_user_history');
       localStorage.removeItem('aux_session_history');
       setRefreshKey((k) => k + 1);
     }
@@ -196,7 +195,7 @@ export const AdminSurveillanceModal: React.FC = () => {
               Showing {history.length} {history.length === 1 ? 'entry' : 'entries'} (capped at 100)
             </span>
             <span className="font-mono text-[11px]">
-              Storage Key: priorix_user_history
+              Storage Key: aux_session_history
             </span>
           </div>
         </motion.div>

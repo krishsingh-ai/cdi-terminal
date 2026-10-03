@@ -16,7 +16,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [consent, setConsent] = useState<ConsentRecord | null>(() => {
     if (typeof window === 'undefined') return null;
     try {
-      const saved = localStorage.getItem('priorix_consent') || localStorage.getItem('aux_consent');
+      const saved = localStorage.getItem('aux_consent');
       return saved ? JSON.parse(saved) : null;
     } catch {
       return null;
@@ -27,7 +27,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [session, setSession] = useState<UserSession | null>(() => {
     if (typeof window === 'undefined') return null;
     try {
-      const saved = sessionStorage.getItem('aux_active_session') || sessionStorage.getItem('priorix_user');
+      const saved = sessionStorage.getItem('aux_active_session');
       return saved ? JSON.parse(saved) : null;
     } catch {
       return null;
@@ -108,7 +108,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       timestamp: new Date().toISOString(),
     };
     try {
-      localStorage.setItem('priorix_consent', JSON.stringify(record));
       localStorage.setItem('aux_consent', JSON.stringify(record));
     } catch (err) {
       console.error('Failed to write consent:', err);
@@ -124,9 +123,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       timestamp: new Date().toISOString(),
     };
     try {
-      localStorage.setItem('priorix_consent', JSON.stringify(record));
       localStorage.setItem('aux_consent', JSON.stringify(record));
-      localStorage.removeItem('priorix_user_history');
       localStorage.removeItem('aux_session_history');
     } catch (err) {
       console.error('Failed to save declined consent:', err);
@@ -142,7 +139,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     session?.role !== 'admin' &&
     (() => {
       try {
-        const pu = sessionStorage.getItem('priorix_user') || sessionStorage.getItem('aux_active_session');
+        const pu = sessionStorage.getItem('aux_active_session');
         if (pu) {
           const parsed = JSON.parse(pu);
           if (parsed.role === 'admin') return false;
@@ -177,7 +174,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     try {
       sessionStorage.setItem('aux_active_session', JSON.stringify(newSession));
-      sessionStorage.setItem('priorix_user', JSON.stringify(newSession));
     } catch (e) {
       console.error('Failed to write to sessionStorage:', e);
     }
@@ -189,14 +185,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Logout Handler & Snapshot Logic (Gated by Consent)
   const logout = useCallback(() => {
     try {
-      const raw = sessionStorage.getItem('aux_active_session') || sessionStorage.getItem('priorix_user');
+      const raw = sessionStorage.getItem('aux_active_session');
       const active: UserSession | null = raw ? JSON.parse(raw) : session;
 
       if (active) {
         // Check consent: must exist and have accepted === true
         let isPermitted = false;
         try {
-          const rawConsent = localStorage.getItem('priorix_consent') || localStorage.getItem('aux_consent');
+          const rawConsent = localStorage.getItem('aux_consent');
           if (rawConsent) {
             const parsedConsent = JSON.parse(rawConsent);
             isPermitted = parsedConsent.accepted === true;
@@ -213,7 +209,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             contractsExplored: Math.max(0, stats.contractsExplored - (active.snapshot?.contractsExplored ?? 0)),
           };
 
-          const rawHistory = localStorage.getItem('priorix_user_history') || localStorage.getItem('aux_session_history');
+          const rawHistory = localStorage.getItem('aux_session_history');
           const historyList: SessionHistoryEntry[] = rawHistory ? JSON.parse(rawHistory) : [];
 
           const newEntry: SessionHistoryEntry = {
@@ -233,7 +229,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
           // Append newest first, cap at 100 entries
           const updatedHistory = [newEntry, ...historyList].slice(0, 100);
-          localStorage.setItem('priorix_user_history', JSON.stringify(updatedHistory));
           localStorage.setItem('aux_session_history', JSON.stringify(updatedHistory));
         }
         // IF role === 'admin' or !isPermitted, do NOT log anything!
@@ -242,7 +237,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.error('Failed to log session history:', err);
     } finally {
       sessionStorage.removeItem('aux_active_session');
-      sessionStorage.removeItem('priorix_user');
       setSession(null);
       setIsSideMenuOpen(false);
       setIsAdminPanelOpen(false);
