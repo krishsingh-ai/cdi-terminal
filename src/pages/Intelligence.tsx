@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   ResponsiveContainer,
   LineChart,
@@ -14,6 +14,7 @@ import { useTheme } from '../hooks/useTheme';
 import { pairwiseData, contractLifecycleData } from '../data/mockData';
 import { cn } from '../utils/cn';
 import useDocumentTitle from '../hooks/useDocumentTitle';
+import { useAuth } from '../hooks/useAuth';
 
 interface CustomTooltipProps {
   active?: boolean;
@@ -47,7 +48,18 @@ const CustomChartTooltip: React.FC<CustomTooltipProps> = ({ active, payload, lab
 export const Intelligence: React.FC = () => {
   useDocumentTitle('Intelligence | AuX Terminal');
   const { theme } = useTheme();
+  const { incrementStat } = useAuth();
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  const hasCountedSignal = useRef(false);
+  const hasCountedContract = useRef(false);
+
+  useEffect(() => {
+    if (!hasCountedSignal.current) {
+      hasCountedSignal.current = true;
+      incrementStat('signalsViewed');
+    }
+  }, [incrementStat]);
+
 
   const isDark = theme === 'dark';
   const navyColor = isDark ? '#3B82F6' : '#1E3A8A';
@@ -231,7 +243,13 @@ export const Intelligence: React.FC = () => {
         <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] overflow-hidden transition-all duration-200 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
           {/* Collapsible Header */}
           <button
-            onClick={() => setIsAccordionOpen((prev) => !prev)}
+            onClick={() => {
+              if (!isAccordionOpen && !hasCountedContract.current) {
+                hasCountedContract.current = true;
+                incrementStat('contractsExplored');
+              }
+              setIsAccordionOpen((prev) => !prev);
+            }}
             className="w-full px-6 py-4 flex items-center justify-between text-left cursor-pointer hover:bg-zinc-100/50 dark:hover:bg-zinc-800/40 transition-colors"
           >
             <div className="flex items-center gap-3">

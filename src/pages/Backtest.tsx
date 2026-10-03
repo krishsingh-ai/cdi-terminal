@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ResponsiveContainer,
   AreaChart,
@@ -9,11 +9,13 @@ import {
   Tooltip,
   CartesianGrid,
 } from 'recharts';
-import { BarChart3, TrendingUp, ShieldCheck, Percent, DollarSign, ArrowDownRight, Layers } from 'lucide-react';
+import { BarChart3, TrendingUp, ShieldCheck, Percent, DollarSign, ArrowDownRight, Layers, PlayCircle, Loader2 } from 'lucide-react';
 import AnimateIn from '../components/ui/AnimateIn';
+import Button from '../components/ui/Button';
 import { useTheme } from '../hooks/useTheme';
 import { backtestMetrics, equityCurveData } from '../data/mockData';
 import useDocumentTitle from '../hooks/useDocumentTitle';
+import { useAuth } from '../hooks/useAuth';
 
 interface CustomTooltipProps {
   active?: boolean;
@@ -47,12 +49,23 @@ const CustomEquityTooltip: React.FC<CustomTooltipProps> = ({ active, payload, la
 export const Backtest: React.FC = () => {
   useDocumentTitle('Walk-Forward Backtest | AuX Terminal');
   const { theme } = useTheme();
+  const { incrementStat, showToast } = useAuth();
+  const [isRunning, setIsRunning] = useState(false);
 
   const isDark = theme === 'dark';
   const navyColor = isDark ? '#3B82F6' : '#1E3A8A';
   const gridColor = isDark ? '#27272A' : '#E5E7EB';
   const textColor = isDark ? '#A1A1AA' : '#6B7280';
   const benchmarkColor = isDark ? '#71717A' : '#9CA3AF';
+
+  const handleRunBacktest = () => {
+    setIsRunning(true);
+    incrementStat('backtestsRun');
+    setTimeout(() => {
+      setIsRunning(false);
+      showToast('Backtest complete — 342 trades processed');
+    }, 1500);
+  };
 
   return (
     <div className="space-y-10 py-6">
@@ -70,6 +83,19 @@ export const Backtest: React.FC = () => {
             Deterministic out-of-sample backtesting with transaction costs, slippage models, and zero look-ahead bias across gold calendar spreads.
           </p>
         </div>
+      </AnimateIn>
+
+      {/* Re-run Button */}
+      <AnimateIn delay={0.05}>
+        <Button
+          variant="primary"
+          size="md"
+          onClick={handleRunBacktest}
+          disabled={isRunning}
+          icon={isRunning ? <Loader2 className="w-4 h-4 animate-spin" /> : <PlayCircle className="w-4 h-4" />}
+        >
+          {isRunning ? 'Running Simulation...' : 'Re-run Walk-Forward Backtest'}
+        </Button>
       </AnimateIn>
 
       {/* Top Row: 4 Metric Cards */}

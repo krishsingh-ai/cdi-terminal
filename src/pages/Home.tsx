@@ -7,8 +7,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   ArrowDownRight,
-  PlusCircle,
-  Database,
 } from 'lucide-react';
 import AnimateIn from '../components/ui/AnimateIn';
 import Button from '../components/ui/Button';
@@ -18,7 +16,7 @@ import { pairwiseData } from '../data/mockData';
 
 export const Home: React.FC = () => {
   useDocumentTitle('AuX | Commodity Derivatives Intelligence Terminal');
-  const { session, stats, incrementStat, tickers } = useAuth();
+  const { tickers } = useAuth();
 
   return (
     <div className="space-y-16 py-8 md:py-16">
@@ -29,7 +27,7 @@ export const Home: React.FC = () => {
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] text-zinc-600 dark:text-zinc-400">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-              Institutional Gold Terminal
+              Institutional Gold Terminal — Demo
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-[#111827] dark:text-[#F9FAFB] leading-[1.1]">
@@ -163,10 +161,10 @@ export const Home: React.FC = () => {
             </div>
             <div className="space-y-2">
               <h3 className="text-lg font-semibold text-[#111827] dark:text-[#F9FAFB]">
-                Volatility Surface & Term Structure
+                Volatility Surface &amp; Term Structure
               </h3>
               <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                Real-time forward curve modeling, cross-tenor basis tracking, and implied volatility skew surfaces across active MCX and COMEX gold contracts.
+                Simulated forward basis tracking and cross-tenor spread modeling across active MCX gold contracts.
               </p>
             </div>
             <div className="pt-2 border-t border-[#E5E7EB] dark:border-[#27272A]">
@@ -206,99 +204,13 @@ export const Home: React.FC = () => {
                 Physical-to-Financial Basis Analytics
               </h3>
               <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                Unify domestic physical spot premiums, vault inventory flows, and import duty dynamics with financial futures for institutional arbitrage detection.
+                Analyze domestic spot basis analytics and cross-tenor spreads across MCX gold futures contracts for relative-value detection.
               </p>
             </div>
             <div className="pt-2 border-t border-[#E5E7EB] dark:border-[#27272A]">
               <span className="font-mono text-xs font-semibold text-[#1E3A8A] dark:text-[#3B82F6]">
                 Basis: +₹142/10g • Z-Score: +2.18σ
               </span>
-            </div>
-          </div>
-        </div>
-      </AnimateIn>
-
-      {/* Step 1 Requirement: Session Telemetry Sandbox (Dummy Increment Buttons) */}
-      <AnimateIn delay={0.25}>
-        <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E5E7EB] dark:border-[#27272A]">
-            <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#1E3A8A] dark:text-[#3B82F6]">
-                <Database className="w-3.5 h-3.5" />
-                Session Telemetry Sandbox
-              </div>
-              <h3 className="text-lg font-bold text-[#111827] dark:text-[#F9FAFB] mt-0.5">
-                Snapshot & Activity Differential Testing
-              </h3>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-                Active Session: <strong className="text-zinc-700 dark:text-zinc-300">{session?.name || 'Unauthenticated'}</strong> ({session?.role || 'None'}).
-                Increment stats below; upon logout, the delta will be archived in <code className="font-mono">aux_session_history</code>.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-mono text-zinc-500 bg-white dark:bg-[#09090B] px-3 py-1.5 rounded-lg border border-[#E5E7EB] dark:border-[#27272A]">
-                Login Snapshot: {session?.snapshot?.signalsViewed ?? 0}s / {session?.snapshot?.backtestsRun ?? 0}b / {session?.snapshot?.contractsExplored ?? 0}c
-              </span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {/* Stat 1: Signals Viewed */}
-            <div className="p-4 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#09090B] space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-zinc-500">Signals Viewed</span>
-                <span className="font-mono text-xl font-bold text-[#1E3A8A] dark:text-[#3B82F6]">
-                  {stats.signalsViewed}
-                </span>
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                className="w-full text-xs"
-                icon={<PlusCircle className="w-3.5 h-3.5" />}
-                onClick={() => incrementStat('signalsViewed')}
-              >
-                + View Signal
-              </Button>
-            </div>
-
-            {/* Stat 2: Backtests Run */}
-            <div className="p-4 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#09090B] space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-zinc-500">Backtests Run</span>
-                <span className="font-mono text-xl font-bold text-[#1E3A8A] dark:text-[#3B82F6]">
-                  {stats.backtestsRun}
-                </span>
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                className="w-full text-xs"
-                icon={<PlusCircle className="w-3.5 h-3.5" />}
-                onClick={() => incrementStat('backtestsRun')}
-              >
-                + Run Backtest
-              </Button>
-            </div>
-
-            {/* Stat 3: Contracts Explored */}
-            <div className="p-4 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#09090B] space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-zinc-500">Contracts Explored</span>
-                <span className="font-mono text-xl font-bold text-[#1E3A8A] dark:text-[#3B82F6]">
-                  {stats.contractsExplored}
-                </span>
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                className="w-full text-xs"
-                icon={<PlusCircle className="w-3.5 h-3.5" />}
-                onClick={() => incrementStat('contractsExplored')}
-              >
-                + Explore Contract
-              </Button>
             </div>
           </div>
         </div>

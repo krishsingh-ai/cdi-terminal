@@ -61,7 +61,7 @@ export const ConsentBanner: React.FC = () => {
                   We value your privacy — and your right to know.
                 </h2>
                 <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                  We use local storage to persist your sessions, track task activity, and store performance snapshots. All data stays in your browser and is never sent to external servers.
+                  We use local storage to persist your sessions, track analytics activity, and store performance snapshots. All data stays in your browser and is never sent to external servers.
                 </p>
 
                 {/* Actions: Stacked on mobile, inline on desktop */}

@@ -76,7 +76,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
                   <h3>What we store</h3>
                 </div>
                 <p className="text-xs leading-relaxed pl-6 text-zinc-500 dark:text-zinc-400">
-                  We track your session ID, operator name, login and logout timestamps, task counts, and hours logged (along with trading terminal telemetry). This telemetry is retained strictly to maintain user performance records across trading sessions.
+                  We track your session ID, operator name, login and logout timestamps, analytics views, and session duration (along with trading terminal telemetry). This telemetry is retained strictly to maintain user performance records across trading sessions.
                 </p>
               </section>
 
@@ -120,7 +120,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
                   <h3>Your rights</h3>
                 </div>
                 <p className="text-xs leading-relaxed pl-6 text-zinc-500 dark:text-zinc-400">
-                  You have the right to decline consent at any time. When declined, no session activities or task tallies will be recorded, and any previously saved surveillance data is erased.
+                  You have the right to decline consent at any time. When declined, no session activities or analytics tallies will be recorded, and any previously saved surveillance data is erased.
                 </p>
               </section>
 
@@ -137,13 +137,6 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
                     className="text-[#1E3A8A] dark:text-[#3B82F6] hover:underline font-mono"
                   >
                     privacy@aux-terminal.app
-                  </a>{' '}
-                  or{' '}
-                  <a
-                    href="mailto:privacy@priorix.app"
-                    className="text-[#1E3A8A] dark:text-[#3B82F6] hover:underline font-mono"
-                  >
-                    privacy@priorix.app
                   </a>
                   .
                 </p>
