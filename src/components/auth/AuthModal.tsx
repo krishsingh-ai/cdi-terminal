@@ -78,7 +78,10 @@ export const AuthModal: React.FC = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 15 }}
           transition={{ duration: 0.25, ease: 'easeOut' }}
-          className="relative z-10 w-full max-w-md rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#18181B] p-8 shadow-2xl text-[#111827] dark:text-[#F9FAFB]"
+          className="relative z-10 w-full max-w-md max-h-[90vh] overflow-y-auto rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#18181B] p-6 sm:p-8 shadow-2xl text-[#111827] dark:text-[#F9FAFB]"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Institutional Clearance Required"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header & Logo */}

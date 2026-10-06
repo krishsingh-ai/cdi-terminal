@@ -76,7 +76,7 @@ export const Backtest: React.FC = () => {
             <BarChart3 className="w-3.5 h-3.5 text-[#1E3A8A] dark:text-[#3B82F6]" />
             Walk-Forward Quantitative Simulation Engine
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-[#111827] dark:text-[#F9FAFB]">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#111827] dark:text-[#F9FAFB]">
             Walk-Forward Backtest
           </h1>
           <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-2xl">
@@ -102,7 +102,7 @@ export const Backtest: React.FC = () => {
       <AnimateIn delay={0.1}>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {/* Card 1: Total Trades */}
-          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
             <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400">
               <span className="text-xs font-medium">Total Trades</span>
               <Layers className="w-4 h-4 text-[#1E3A8A] dark:text-[#3B82F6]" />
@@ -116,7 +116,7 @@ export const Backtest: React.FC = () => {
           </div>
 
           {/* Card 2: Win Rate */}
-          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
             <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400">
               <span className="text-xs font-medium">Win Rate</span>
               <Percent className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
@@ -130,7 +130,7 @@ export const Backtest: React.FC = () => {
           </div>
 
           {/* Card 3: Gross P&L */}
-          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
             <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400">
               <span className="text-xs font-medium">Gross Cumulative P&amp;L</span>
               <DollarSign className="w-4 h-4 text-[#1E3A8A] dark:text-[#3B82F6]" />
@@ -144,7 +144,7 @@ export const Backtest: React.FC = () => {
           </div>
 
           {/* Card 4: Max Drawdown */}
-          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
             <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400">
               <span className="text-xs font-medium">Max Drawdown</span>
               <ArrowDownRight className="w-4 h-4 text-rose-500" />
@@ -161,7 +161,7 @@ export const Backtest: React.FC = () => {
 
       {/* Middle: Walk-Forward Cumulative Equity Area Chart */}
       <AnimateIn delay={0.15}>
-        <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-6 transition-all duration-200 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+        <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-6 transition-all duration-200 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E5E7EB] dark:border-[#27272A]">
             <div>
               <h2 className="text-base font-semibold text-[#111827] dark:text-[#F9FAFB]">
@@ -184,54 +184,61 @@ export const Backtest: React.FC = () => {
             </div>
           </div>
 
-          <div className="h-80 w-full pt-2">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={equityCurveData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
-                <defs>
-                  <linearGradient id="equityNavy" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={navyColor} stopOpacity={0.25} />
-                    <stop offset="95%" stopColor={navyColor} stopOpacity={0.0} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={gridColor} />
-                <XAxis
-                  dataKey="month"
-                  stroke={textColor}
-                  fontSize={11}
-                  tickLine={false}
-                  axisLine={{ stroke: gridColor }}
-                  fontFamily="JetBrains Mono"
-                />
-                <YAxis
-                  stroke={textColor}
-                  fontSize={11}
-                  tickLine={false}
-                  axisLine={{ stroke: gridColor }}
-                  fontFamily="JetBrains Mono"
-                  tickFormatter={(val) => `₹${(val / 100000).toFixed(1)}L`}
-                  domain={['dataMin - 50000', 'dataMax + 50000']}
-                />
-                <Tooltip content={<CustomEquityTooltip />} />
-                <Line
-                  type="monotone"
-                  dataKey="benchmark"
-                  name="Gold Benchmark"
-                  stroke={benchmarkColor}
-                  strokeDasharray="4 4"
-                  strokeWidth={1.5}
-                  dot={false}
-                />
-                <Area
-                  type="monotone"
-                  dataKey="equity"
-                  name="AuX Terminal Strategy"
-                  stroke={navyColor}
-                  strokeWidth={2.5}
-                  fillOpacity={1}
-                  fill="url(#equityNavy)"
-                />
-              </AreaChart>
-            </ResponsiveContainer>
+          <div className="h-64 sm:h-80 w-full pt-2">
+            {!equityCurveData || equityCurveData.length === 0 ? (
+              <div className="h-full w-full flex flex-col items-center justify-center text-xs font-mono text-zinc-400 dark:text-zinc-500">
+                <Loader2 className="w-5 h-5 animate-spin text-[#1E3A8A] dark:text-[#3B82F6] mb-2" />
+                <span>Loading walk-forward equity simulation data...</span>
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={equityCurveData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="equityNavy" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor={navyColor} stopOpacity={0.25} />
+                      <stop offset="95%" stopColor={navyColor} stopOpacity={0.0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={gridColor} />
+                  <XAxis
+                    dataKey="month"
+                    stroke={textColor}
+                    fontSize={11}
+                    tickLine={false}
+                    axisLine={{ stroke: gridColor }}
+                    fontFamily="JetBrains Mono"
+                  />
+                  <YAxis
+                    stroke={textColor}
+                    fontSize={11}
+                    tickLine={false}
+                    axisLine={{ stroke: gridColor }}
+                    fontFamily="JetBrains Mono"
+                    tickFormatter={(val) => `₹${(val / 100000).toFixed(1)}L`}
+                    domain={['dataMin - 50000', 'dataMax + 50000']}
+                  />
+                  <Tooltip content={<CustomEquityTooltip />} />
+                  <Line
+                    type="monotone"
+                    dataKey="benchmark"
+                    name="Gold Benchmark"
+                    stroke={benchmarkColor}
+                    strokeDasharray="4 4"
+                    strokeWidth={1.5}
+                    dot={false}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="equity"
+                    name="AuX Terminal Strategy"
+                    stroke={navyColor}
+                    strokeWidth={2.5}
+                    fillOpacity={1}
+                    fill="url(#equityNavy)"
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            )}
           </div>
         </div>
       </AnimateIn>

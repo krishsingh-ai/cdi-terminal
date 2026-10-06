@@ -27,7 +27,6 @@ export const AdminSurveillanceModal: React.FC = () => {
   }
 
   // Derive history directly on render
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const history = readSessionHistory();
 
   const handleClearHistory = () => {
@@ -68,10 +67,13 @@ export const AdminSurveillanceModal: React.FC = () => {
           exit={{ opacity: 0, scale: 0.98, y: 15 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
           className="relative z-10 w-full max-w-5xl max-h-[85vh] flex flex-col rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#18181B] shadow-2xl text-[#111827] dark:text-[#F9FAFB] overflow-hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Admin Surveillance Console"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E7EB] dark:border-[#27272A] bg-zinc-50/60 dark:bg-zinc-900/40">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-[#E5E7EB] dark:border-[#27272A] bg-zinc-50/60 dark:bg-zinc-900/40">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950/60 flex items-center justify-center text-[#1E3A8A] dark:text-[#3B82F6]">
                 <Shield className="w-4 h-4" />
@@ -99,9 +101,9 @@ export const AdminSurveillanceModal: React.FC = () => {
               <button
                 onClick={() => setIsAdminPanelOpen(false)}
                 className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
-                aria-label="Close modal"
+                aria-label="Close"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -190,7 +192,7 @@ export const AdminSurveillanceModal: React.FC = () => {
           </div>
 
           {/* Footer Bar */}
-          <div className="px-6 py-3 border-t border-[#E5E7EB] dark:border-[#27272A] bg-zinc-50/60 dark:bg-zinc-900/40 flex items-center justify-between text-xs text-zinc-500">
+          <div className="px-4 sm:px-6 py-3 border-t border-[#E5E7EB] dark:border-[#27272A] bg-zinc-50/60 dark:bg-zinc-900/40 flex items-center justify-between text-xs text-zinc-500">
             <span>
               Showing {history.length} {history.length === 1 ? 'entry' : 'entries'} (capped at 100)
             </span>

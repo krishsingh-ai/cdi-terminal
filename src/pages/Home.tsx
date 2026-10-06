@@ -30,11 +30,11 @@ export const Home: React.FC = () => {
               Institutional Gold Terminal — Demo
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-[#111827] dark:text-[#F9FAFB] leading-[1.1]">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight text-[#111827] dark:text-[#F9FAFB] leading-[1.1]">
               Next-Generation Gold Derivatives Intelligence.
             </h1>
 
-            <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
               AuX is a next-generation commodity derivatives intelligence platform engineered for quantitative researchers, commodity desks, and institutional traders. By synthesizing multi-tenor implied volatilities, physical inventory flows, and macroeconomic risk factors, AuX delivers uncompromised clarity in gold pricing dynamics.
             </p>
 
@@ -79,73 +79,87 @@ export const Home: React.FC = () => {
 
             {/* Four Ticker Rows */}
             <div className="space-y-3">
-              {tickers.map((t) => {
-                const isPositive = t.changePercent >= 0;
-                const absPercent = Math.abs(t.changePercent);
-                return (
-                  <div
-                    key={t.symbol}
-                    className="grid grid-cols-3 items-center text-xs"
-                  >
-                    <span className="font-bold text-[#111827] dark:text-[#F9FAFB]">
-                      {t.symbol}
-                    </span>
-                    <span className="font-mono text-zinc-800 dark:text-zinc-200 text-center">
-                      ₹{t.price.toLocaleString('en-IN')}
-                    </span>
-                    <span
-                      className={`font-mono text-right flex items-center justify-end gap-1 ${
-                        isPositive
-                          ? 'text-emerald-600 dark:text-emerald-400'
-                          : 'text-rose-600 dark:text-rose-400'
-                      }`}
+              {!tickers || tickers.length === 0 ? (
+                <div className="py-6 text-center text-xs font-mono text-zinc-400 dark:text-zinc-500">
+                  Market data unavailable
+                </div>
+              ) : (
+                tickers.map((t) => {
+                  const isPositive = t.changePercent >= 0;
+                  const absPercent = Math.abs(t.changePercent);
+                  return (
+                    <div
+                      key={t.symbol}
+                      className="grid grid-cols-3 items-center text-xs"
                     >
-                      {isPositive ? (
-                        <>
-                          <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
-                          <span>▲ {t.changePercent}%</span>
-                        </>
-                      ) : (
-                        <>
-                          <ArrowDownRight className="w-3.5 h-3.5 shrink-0" />
-                          <span>▼ {absPercent}%</span>
-                        </>
-                      )}
-                    </span>
-                  </div>
-                );
-              })}
+                      <span className="font-bold text-[#111827] dark:text-[#F9FAFB]">
+                        {t.symbol}
+                      </span>
+                      <span className="font-mono text-zinc-800 dark:text-zinc-200 text-center">
+                        ₹{t.price.toLocaleString('en-IN')}
+                      </span>
+                      <span
+                        className={`font-mono text-right flex items-center justify-end gap-1 ${
+                          isPositive
+                            ? 'text-emerald-600 dark:text-emerald-400'
+                            : 'text-rose-600 dark:text-rose-400'
+                        }`}
+                      >
+                        {isPositive ? (
+                          <>
+                            <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
+                            <span>▲ {t.changePercent}%</span>
+                          </>
+                        ) : (
+                          <>
+                            <ArrowDownRight className="w-3.5 h-3.5 shrink-0" />
+                            <span>▼ {absPercent}%</span>
+                          </>
+                        )}
+                      </span>
+                    </div>
+                  );
+                })
+              )}
             </div>
 
             {/* Bottom Section: Pairwise Signal */}
             <div className="pt-4 border-t border-[#E5E7EB] dark:border-[#27272A] space-y-2.5">
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">
-                    PAIRWISE SIGNAL
-                  </span>
-                  <span className="text-xs font-semibold text-[#111827] dark:text-[#F9FAFB]">
-                    GOLDM vs GOLDTEN
-                  </span>
+              {!pairwiseData ? (
+                <div className="py-2 text-center text-xs font-mono text-zinc-400 dark:text-zinc-500">
+                  Market data unavailable
                 </div>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-medium border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/50 text-[#1E3A8A] dark:text-[#3B82F6]">
-                  {pairwiseData.status}
-                </span>
-              </div>
+              ) : (
+                <>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">
+                        PAIRWISE SIGNAL
+                      </span>
+                      <span className="text-xs font-semibold text-[#111827] dark:text-[#F9FAFB]">
+                        GOLDM vs GOLDTEN
+                      </span>
+                    </div>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-medium border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/50 text-[#1E3A8A] dark:text-[#3B82F6]">
+                      {pairwiseData.status}
+                    </span>
+                  </div>
 
-              <div className="flex items-center justify-between text-xs pt-0.5">
-                <span className="text-zinc-500 dark:text-zinc-400">Z-Score:</span>
-                <span className="font-mono font-bold text-[#1E3A8A] dark:text-[#3B82F6]">
-                  +{pairwiseData.zScore.toFixed(2)}σ
-                </span>
-              </div>
+                  <div className="flex items-center justify-between text-xs pt-0.5">
+                    <span className="text-zinc-500 dark:text-zinc-400">Z-Score:</span>
+                    <span className="font-mono font-bold text-[#1E3A8A] dark:text-[#3B82F6]">
+                      +{pairwiseData.zScore.toFixed(2)}σ
+                    </span>
+                  </div>
 
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-zinc-500 dark:text-zinc-400">Current Spread:</span>
-                <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
-                  ₹{pairwiseData.currentSpread.toFixed(2)}/g
-                </span>
-              </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-zinc-500 dark:text-zinc-400">Current Spread:</span>
+                    <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
+                      ₹{pairwiseData.currentSpread.toFixed(2)}/g
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </AnimateIn>
@@ -155,7 +169,7 @@ export const Home: React.FC = () => {
       <AnimateIn delay={0.15}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Feature Card 1 */}
-          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-4 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-200">
+          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
             <div className="w-10 h-10 rounded-lg border border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#09090B] flex items-center justify-center text-[#1E3A8A] dark:text-[#3B82F6]">
               <TrendingUp className="w-5 h-5" />
             </div>
@@ -175,7 +189,7 @@ export const Home: React.FC = () => {
           </div>
 
           {/* Feature Card 2 */}
-          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-4 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-200">
+          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
             <div className="w-10 h-10 rounded-lg border border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#09090B] flex items-center justify-center text-[#1E3A8A] dark:text-[#3B82F6]">
               <Activity className="w-5 h-5" />
             </div>
@@ -195,7 +209,7 @@ export const Home: React.FC = () => {
           </div>
 
           {/* Feature Card 3 */}
-          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-4 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-200">
+          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
             <div className="w-10 h-10 rounded-lg border border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#09090B] flex items-center justify-center text-[#1E3A8A] dark:text-[#3B82F6]">
               <Layers className="w-5 h-5" />
             </div>

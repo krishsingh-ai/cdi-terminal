@@ -58,14 +58,17 @@ export const SideMenu: React.FC = () => {
 
         {/* Slide-in Drawer */}
         <motion.aside
+          role="dialog"
+          aria-modal="true"
+          aria-label="User navigation drawer"
           initial={{ x: '100%' }}
           animate={{ x: 0 }}
           exit={{ x: '100%' }}
           transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
-          className="relative z-10 w-84 md:w-96 h-full border-l border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#18181B] text-[#111827] dark:text-[#F9FAFB] shadow-2xl flex flex-col justify-between overflow-y-auto"
+          className="relative z-10 w-[85vw] sm:w-96 max-w-[400px] h-full border-l border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#18181B] text-[#111827] dark:text-[#F9FAFB] shadow-2xl flex flex-col justify-between overflow-y-auto"
         >
           {/* Top & Content Section */}
-          <div className="p-6 space-y-6">
+          <div className="p-5 sm:p-6 space-y-6">
             {/* Header & Close */}
             <div className="flex items-center justify-between pb-4 border-b border-[#E5E7EB] dark:border-[#27272A]">
               <div className="flex items-center gap-2.5">
@@ -83,7 +86,7 @@ export const SideMenu: React.FC = () => {
               <button
                 onClick={() => setIsSideMenuOpen(false)}
                 className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
-                aria-label="Close menu"
+                aria-label="Close"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -239,7 +242,7 @@ export const SideMenu: React.FC = () => {
           </div>
 
           {/* Bottom Actions & Credits */}
-          <div className="p-6 border-t border-[#E5E7EB] dark:border-[#27272A] bg-zinc-50/50 dark:bg-zinc-900/30 space-y-4">
+          <div className="p-5 sm:p-6 border-t border-[#E5E7EB] dark:border-[#27272A] bg-zinc-50/50 dark:bg-zinc-900/30 space-y-4">
             {/* Admin Control Button: ONLY VISIBLE IF role === 'admin' */}
             {session?.role === 'admin' && (
               <button
@@ -254,6 +257,7 @@ export const SideMenu: React.FC = () => {
             {/* Logout Button */}
             <button
               onClick={logout}
+              aria-label="Logout"
               className="w-full py-2.5 px-4 rounded-lg border border-[#E5E7EB] dark:border-[#27272A] hover:bg-red-50 dark:hover:bg-red-950/20 text-zinc-700 hover:text-red-600 dark:text-zinc-300 dark:hover:text-red-400 font-medium text-sm transition-colors cursor-pointer flex items-center justify-center gap-2"
             >
               <LogOut className="w-4 h-4" />

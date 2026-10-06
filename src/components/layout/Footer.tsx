@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="mt-auto border-t border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#09090B] transition-colors duration-200">
-      <div className="max-w-[1400px] mx-auto px-6 py-12">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Column 1: Logo & Tagline */}
           <div className="space-y-3">
@@ -106,14 +106,14 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-[#E5E7EB] dark:border-[#27272A] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-zinc-500 dark:text-zinc-500">
+        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#E5E7EB] dark:border-[#27272A] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+          <p className="text-zinc-500 dark:text-zinc-500 text-center sm:text-left">
             © 2026 AuX Terminal. All rights reserved.
           </p>
           <button
             type="button"
             onClick={() => setIsPrivacyModalOpen(true)}
-            className="text-xs text-zinc-500 dark:text-zinc-400 hover:text-[#1E3A8A] dark:hover:text-[#3B82F6] hover:underline cursor-pointer transition-colors"
+            className="text-zinc-500 dark:text-zinc-400 hover:text-[#1E3A8A] dark:hover:text-[#3B82F6] hover:underline cursor-pointer transition-colors"
           >
             Privacy Policy
           </button>

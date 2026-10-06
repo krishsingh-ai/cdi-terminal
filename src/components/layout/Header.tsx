@@ -30,7 +30,7 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-white dark:bg-[#09090B] border-b border-[#E5E7EB] dark:border-[#27272A] transition-colors duration-200">
-      <div className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Left: AuX Logo */}
         <Link
           to="/"
@@ -102,12 +102,12 @@ export const Header: React.FC = () => {
           {/* Command Palette Trigger Badge */}
           <button
             onClick={() => setIsCommandOpen(true)}
-            className="hidden sm:inline-flex items-center gap-1.5 h-9 px-2.5 rounded-lg border border-[#E5E7EB] dark:border-[#27272A] bg-zinc-50 dark:bg-[#18181B] text-zinc-600 dark:text-zinc-400 hover:text-[#1E3A8A] dark:hover:text-[#3B82F6] hover:border-[#1E3A8A] dark:hover:border-[#3B82F6] transition-colors cursor-pointer text-xs font-mono"
+            className="inline-flex items-center gap-1.5 h-9 px-2.5 rounded-lg border border-[#E5E7EB] dark:border-[#27272A] bg-zinc-50 dark:bg-[#18181B] text-zinc-600 dark:text-zinc-400 hover:text-[#1E3A8A] dark:hover:text-[#3B82F6] hover:border-[#1E3A8A] dark:hover:border-[#3B82F6] transition-colors cursor-pointer text-xs font-mono"
             title="Open Command Palette (Ctrl+K / ⌘K)"
-            aria-label="Open Command Palette"
+            aria-label="Open command palette"
           >
             <Search className="w-3.5 h-3.5 text-zinc-400" />
-            <span className="font-semibold">
+            <span className="hidden sm:inline font-semibold">
               {typeof navigator !== 'undefined' && /(Mac|iPhone|iPod|iPad)/i.test(navigator.userAgent || navigator.platform)
                 ? '⌘K'
                 : 'Ctrl K'}
@@ -118,7 +118,7 @@ export const Header: React.FC = () => {
           <button
             onClick={handleUserButtonClick}
             className="h-9 min-w-9 px-2.5 rounded-lg border border-[#E5E7EB] dark:border-[#27272A] text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer flex items-center justify-center gap-1.5"
-            aria-label="User Account and Session Controls"
+            aria-label="User session"
             title={session?.name ? `Session: ${session.name} (${session.role})` : 'Terminal User'}
           >
             {session ? (
@@ -134,11 +134,11 @@ export const Header: React.FC = () => {
             )}
           </button>
 
-          {/* Hamburger Menu Button */}
+          {/* Hamburger Menu Button (Always visible on all breakpoints) */}
           <button
             onClick={handleHamburgerClick}
-            className="p-2 rounded-lg border border-[#E5E7EB] dark:border-[#27272A] text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer md:hidden"
-            aria-label="Toggle Navigation Menu"
+            className="p-2 rounded-lg border border-[#E5E7EB] dark:border-[#27272A] text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer flex items-center justify-center"
+            aria-label="Open menu"
             title="Menu"
           >
             <Menu className="w-4 h-4" />

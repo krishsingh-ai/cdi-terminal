@@ -8,7 +8,7 @@ import {
   Tooltip,
   CartesianGrid,
 } from 'recharts';
-import { ChevronDown, ChevronUp, Compass, Layers, CheckCircle2 } from 'lucide-react';
+import { ChevronDown, ChevronUp, Compass, Layers, CheckCircle2, Loader2 } from 'lucide-react';
 import AnimateIn from '../components/ui/AnimateIn';
 import { useTheme } from '../hooks/useTheme';
 import { pairwiseData, contractLifecycleData } from '../data/mockData';
@@ -90,7 +90,7 @@ export const Intelligence: React.FC = () => {
       <AnimateIn delay={0.1}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1: Z-Score */}
-          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
                 Statistical Z-Score
@@ -109,7 +109,7 @@ export const Intelligence: React.FC = () => {
           </div>
 
           {/* Card 2: Current Spread */}
-          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
                 Current Spread (Basis)
@@ -127,7 +127,7 @@ export const Intelligence: React.FC = () => {
           </div>
 
           {/* Card 3: Rolling Mean & Bounds */}
-          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+          <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
                 Rolling Mean (30D)
@@ -148,7 +148,7 @@ export const Intelligence: React.FC = () => {
 
       {/* Middle: Pairwise Intelligence Chart */}
       <AnimateIn delay={0.15}>
-        <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-6 transition-all duration-200 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+        <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-6 transition-all duration-200 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E5E7EB] dark:border-[#27272A]">
             <div>
               <h2 className="text-base font-semibold text-[#111827] dark:text-[#F9FAFB]">
@@ -175,65 +175,72 @@ export const Intelligence: React.FC = () => {
             </div>
           </div>
 
-          <div className="h-80 w-full pt-2">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={pairwiseData.chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={gridColor} />
-                <XAxis
-                  dataKey="time"
-                  stroke={textColor}
-                  fontSize={11}
-                  tickLine={false}
-                  axisLine={{ stroke: gridColor }}
-                  fontFamily="JetBrains Mono"
-                />
-                <YAxis
-                  stroke={textColor}
-                  fontSize={11}
-                  tickLine={false}
-                  axisLine={{ stroke: gridColor }}
-                  fontFamily="JetBrains Mono"
-                  domain={['auto', 'auto']}
-                />
-                <Tooltip content={<CustomChartTooltip />} />
-                <Line
-                  type="monotone"
-                  dataKey="upperBand"
-                  name="+2σ Upper Band"
-                  stroke={bandColor}
-                  strokeDasharray="4 4"
-                  strokeWidth={1.5}
-                  dot={false}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="mean"
-                  name="Rolling Mean"
-                  stroke={meanColor}
-                  strokeDasharray="2 2"
-                  strokeWidth={1.5}
-                  dot={false}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="lowerBand"
-                  name="-2σ Lower Band"
-                  stroke={bandColor}
-                  strokeDasharray="4 4"
-                  strokeWidth={1.5}
-                  dot={false}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="spread"
-                  name="Current Spread"
-                  stroke={navyColor}
-                  strokeWidth={2.5}
-                  dot={false}
-                  activeDot={{ r: 5, fill: navyColor }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
+          <div className="h-64 sm:h-80 w-full pt-2">
+            {!pairwiseData?.chartData || pairwiseData.chartData.length === 0 ? (
+              <div className="h-full w-full flex flex-col items-center justify-center text-xs font-mono text-zinc-400 dark:text-zinc-500">
+                <Loader2 className="w-5 h-5 animate-spin text-[#1E3A8A] dark:text-[#3B82F6] mb-2" />
+                <span>Loading pairwise chart data...</span>
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={pairwiseData.chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={gridColor} />
+                  <XAxis
+                    dataKey="time"
+                    stroke={textColor}
+                    fontSize={11}
+                    tickLine={false}
+                    axisLine={{ stroke: gridColor }}
+                    fontFamily="JetBrains Mono"
+                  />
+                  <YAxis
+                    stroke={textColor}
+                    fontSize={11}
+                    tickLine={false}
+                    axisLine={{ stroke: gridColor }}
+                    fontFamily="JetBrains Mono"
+                    domain={['auto', 'auto']}
+                  />
+                  <Tooltip content={<CustomChartTooltip />} />
+                  <Line
+                    type="monotone"
+                    dataKey="upperBand"
+                    name="+2σ Upper Band"
+                    stroke={bandColor}
+                    strokeDasharray="4 4"
+                    strokeWidth={1.5}
+                    dot={false}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="mean"
+                    name="Rolling Mean"
+                    stroke={meanColor}
+                    strokeDasharray="2 2"
+                    strokeWidth={1.5}
+                    dot={false}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="lowerBand"
+                    name="-2σ Lower Band"
+                    stroke={bandColor}
+                    strokeDasharray="4 4"
+                    strokeWidth={1.5}
+                    dot={false}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="spread"
+                    name="Current Spread"
+                    stroke={navyColor}
+                    strokeWidth={2.5}
+                    dot={false}
+                    activeDot={{ r: 5, fill: navyColor }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            )}
           </div>
         </div>
       </AnimateIn>
@@ -274,17 +281,17 @@ export const Intelligence: React.FC = () => {
 
           {/* Accordion Table Content */}
           {isAccordionOpen && (
-            <div className="border-t border-[#E5E7EB] dark:border-[#27272A] overflow-x-auto">
+            <div className="border-t border-[#E5E7EB] dark:border-[#27272A] w-full max-w-full overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
                   <tr className="bg-zinc-100/80 dark:bg-zinc-800/60 border-b border-[#E5E7EB] dark:border-[#27272A] text-zinc-500 dark:text-zinc-400 font-medium">
-                    <th className="py-3 px-6">Contract Symbol</th>
-                    <th className="py-3 px-4">Expiry Date</th>
-                    <th className="py-3 px-4">Days to Expiry (DTE)</th>
-                    <th className="py-3 px-4 text-right">24h Volume (Lots)</th>
-                    <th className="py-3 px-4 text-right">Open Interest (OI)</th>
-                    <th className="py-3 px-4 text-right">Settlement Price</th>
-                    <th className="py-3 px-6 text-center">Status</th>
+                    <th className="py-2.5 sm:py-3 px-3 sm:px-6">Contract Symbol</th>
+                    <th className="py-2.5 sm:py-3 px-2 sm:px-4">Expiry Date</th>
+                    <th className="py-2.5 sm:py-3 px-2 sm:px-4">Days to Expiry (DTE)</th>
+                    <th className="py-2.5 sm:py-3 px-2 sm:px-4 text-right">24h Volume (Lots)</th>
+                    <th className="py-2.5 sm:py-3 px-2 sm:px-4 text-right">Open Interest (OI)</th>
+                    <th className="py-2.5 sm:py-3 px-2 sm:px-4 text-right">Settlement Price</th>
+                    <th className="py-2.5 sm:py-3 px-3 sm:px-6 text-center">Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#E5E7EB] dark:divide-[#27272A]">
@@ -293,15 +300,15 @@ export const Intelligence: React.FC = () => {
                       key={contract.symbol}
                       className="even:bg-white dark:even:bg-[#18181B] odd:bg-zinc-50/50 dark:odd:bg-zinc-900/30 transition-colors duration-150 hover:text-[#1E3A8A] dark:hover:text-[#3B82F6] hover:bg-blue-50/30 dark:hover:bg-blue-950/20"
                     >
-                      <td className="py-3.5 px-6 font-bold font-mono">
+                      <td className="py-2.5 sm:py-3.5 px-3 sm:px-6 font-bold font-mono">
                         {contract.symbol}
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-zinc-600 dark:text-zinc-400">
+                      <td className="py-2.5 sm:py-3.5 px-2 sm:px-4 font-mono text-zinc-600 dark:text-zinc-400">
                         {contract.expiry}
                       </td>
-                      <td className="py-3.5 px-4 font-mono">
+                      <td className="py-2.5 sm:py-3.5 px-2 sm:px-4 font-mono">
                         <span className={cn(
-                          'px-2 py-0.5 rounded text-[11px] font-semibold',
+                          'px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-semibold',
                           contract.dte <= 5
                             ? 'bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400'
                             : 'text-zinc-700 dark:text-zinc-300'
@@ -309,19 +316,19 @@ export const Intelligence: React.FC = () => {
                           {contract.dte}d
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-right text-zinc-700 dark:text-zinc-300">
+                      <td className="py-2.5 sm:py-3.5 px-2 sm:px-4 font-mono text-right text-zinc-700 dark:text-zinc-300">
                         {contract.volume.toLocaleString('en-IN')}
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-right text-zinc-700 dark:text-zinc-300">
+                      <td className="py-2.5 sm:py-3.5 px-2 sm:px-4 font-mono text-right text-zinc-700 dark:text-zinc-300">
                         {contract.openInterest.toLocaleString('en-IN')}
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-right font-semibold text-zinc-900 dark:text-zinc-100">
+                      <td className="py-2.5 sm:py-3.5 px-2 sm:px-4 font-mono text-right font-semibold text-zinc-900 dark:text-zinc-100">
                         ₹{contract.closePrice.toLocaleString('en-IN')}
                       </td>
-                      <td className="py-3.5 px-6 text-center">
+                      <td className="py-2.5 sm:py-3.5 px-3 sm:px-6 text-center">
                         <span
                           className={cn(
-                            'inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold uppercase tracking-wider',
+                            'inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono font-semibold uppercase tracking-wider',
                             contract.status === 'ACTIVE'
                               ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400'
                               : 'bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400'

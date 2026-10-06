@@ -38,10 +38,10 @@ export const About: React.FC = () => {
             <Users className="w-3.5 h-3.5 text-[#1E3A8A] dark:text-[#3B82F6]" />
             Engineering Team &amp; Mission
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#111827] dark:text-[#F9FAFB]">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827] dark:text-[#F9FAFB]">
             About AuX
           </h1>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
             AuX was built to resolve structural pricing inefficiencies across physical gold flows and multi-tenor financial futures. Engineered with institutional rigor, the terminal bridges mathematical purity normalization with deterministic execution algorithms.
           </p>
         </div>
@@ -63,7 +63,7 @@ export const About: React.FC = () => {
             {teamMembers.map((member) => (
               <div
                 key={member.name}
-                className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-6 space-y-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]"
+                className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-6 space-y-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]"
               >
                 {/* Circular Avatar Placeholder with Initials */}
                 <div className="w-14 h-14 rounded-full border border-[#E5E7EB] dark:border-[#27272A] bg-white dark:bg-[#09090B] flex items-center justify-center font-bold text-lg font-mono text-[#1E3A8A] dark:text-[#3B82F6] shadow-sm">
@@ -90,7 +90,7 @@ export const About: React.FC = () => {
 
       {/* HACK IN HILLS '26 — PS 03 Section */}
       <AnimateIn delay={0.15}>
-        <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-8 space-y-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+        <div className="rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-8 space-y-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E5E7EB] dark:border-[#27272A]">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-950/60 flex items-center justify-center text-amber-600 dark:text-amber-400">

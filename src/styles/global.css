@@ -25,6 +25,16 @@
     background-color: #09090B;
     color: #F9FAFB;
   }
+
+  :focus-visible {
+    outline: 2px solid #1E3A8A;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .dark :focus-visible {
+    outline-color: #3B82F6;
+  }
 }
 
 /* Card micro-interaction: lift by 2px and change border to Navy Blue */

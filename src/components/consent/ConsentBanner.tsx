@@ -39,13 +39,13 @@ export const ConsentBanner: React.FC = () => {
   return (
     <AnimatePresence>
       {isConsentBannerVisible && (
-        <div className="fixed bottom-6 left-0 right-0 z-40 flex justify-center px-4 pointer-events-none">
+        <div className="fixed bottom-4 sm:bottom-6 left-0 right-0 z-40 flex justify-center px-4 pointer-events-none">
           <motion.div
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="w-full max-w-2xl rounded-2xl border border-[#E5E7EB] dark:border-[#27272A] bg-white/95 dark:bg-[#18181B]/95 backdrop-blur-xl shadow-2xl p-6 text-[#111827] dark:text-[#F9FAFB] pointer-events-auto"
+            className="w-full max-w-2xl rounded-2xl border border-[#E5E7EB] dark:border-[#27272A] bg-white/95 dark:bg-[#18181B]/95 backdrop-blur-xl shadow-2xl p-4 sm:p-6 text-[#111827] dark:text-[#F9FAFB] pointer-events-auto"
             role="region"
             aria-label="Privacy and cookie consent banner"
           >

@@ -42,10 +42,13 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
             className="relative z-10 w-full max-w-xl max-h-[85vh] flex flex-col rounded-2xl border border-[#E5E7EB] dark:border-[#27272A] bg-white/95 dark:bg-[#18181B]/95 backdrop-blur-xl shadow-2xl text-[#111827] dark:text-[#F9FAFB] overflow-hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Privacy Policy"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E7EB] dark:border-[#27272A] bg-zinc-50/50 dark:bg-zinc-900/30">
+            <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-[#E5E7EB] dark:border-[#27272A] bg-zinc-50/50 dark:bg-zinc-900/30">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 flex items-center justify-center text-[#1E3A8A] dark:text-[#3B82F6]">
                   <Shield className="w-4 h-4" />
@@ -61,14 +64,14 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
               <button
                 onClick={onClose}
                 className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
-                aria-label="Close Privacy Policy"
+                aria-label="Close"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Scrollable Body */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6 text-sm text-zinc-600 dark:text-zinc-300">
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 text-sm text-zinc-600 dark:text-zinc-300">
               {/* Section 1: What we store */}
               <section className="space-y-1.5">
                 <div className="flex items-center gap-2 font-semibold text-[#111827] dark:text-[#F9FAFB]">
@@ -144,7 +147,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
             </div>
 
             {/* Footer of modal */}
-            <div className="flex items-center justify-between px-6 py-4 border-t border-[#E5E7EB] dark:border-[#27272A] bg-zinc-50/50 dark:bg-zinc-900/30">
+            <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-t border-[#E5E7EB] dark:border-[#27272A] bg-zinc-50/50 dark:bg-zinc-900/30">
               <span className="text-xs font-mono text-zinc-400">
                 Last updated: September 28, 2026
               </span>

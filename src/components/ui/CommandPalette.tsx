@@ -73,7 +73,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-[10vh] sm:pt-[15vh] px-4">
           {/* Glassmorphic backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -90,7 +90,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="relative z-10 w-full max-w-xl overflow-hidden rounded-xl border border-zinc-700/60 dark:border-zinc-800 bg-[#09090b]/85 backdrop-blur-xl shadow-2xl text-zinc-100"
+            className="relative z-10 w-full max-w-[92vw] sm:max-w-xl overflow-hidden rounded-xl border border-zinc-700/60 dark:border-zinc-800 bg-[#09090b]/85 backdrop-blur-xl shadow-2xl text-zinc-100"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Command Palette"
             onClick={(e) => e.stopPropagation()}
           >
             <Command
@@ -282,8 +285,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
               </Command.List>
 
               {/* Bottom Footer with Keyboard Hints */}
-              <div className="flex items-center justify-between px-4 py-2 border-t border-zinc-800/80 bg-zinc-900/40 text-[11px] font-mono text-zinc-500">
-                <div className="flex items-center gap-3">
+              <div className="flex items-center justify-between px-3 sm:px-4 py-2 border-t border-zinc-800/80 bg-zinc-900/40 text-[10px] sm:text-[11px] font-mono text-zinc-500 overflow-x-auto">
+                <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                   <span>
                     <kbd className="px-1 py-0.5 rounded bg-zinc-800 border border-zinc-700 text-zinc-400 text-[10px]">
                       ↑↓

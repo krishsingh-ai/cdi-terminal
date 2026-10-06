@@ -14,7 +14,7 @@ export const Methodology: React.FC = () => {
             <BookOpen className="w-3.5 h-3.5 text-[#1E3A8A] dark:text-[#3B82F6]" />
             Mathematical Specifications &amp; Exchange Rules
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-[#111827] dark:text-[#F9FAFB]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#111827] dark:text-[#F9FAFB]">
             Quantitative Methodology
           </h1>
           <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
@@ -25,7 +25,7 @@ export const Methodology: React.FC = () => {
 
       {/* Section 1: Purity & Basis Normalization */}
       <AnimateIn delay={0.1}>
-        <section className="space-y-4 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-8 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+        <section className="space-y-4 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-8 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950/60 flex items-center justify-center text-[#1E3A8A] dark:text-[#3B82F6]">
               <Scale className="w-4 h-4" />
@@ -40,17 +40,17 @@ export const Methodology: React.FC = () => {
           </p>
 
           {/* Formula Box */}
-          <div className="p-5 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-gray-50 dark:bg-zinc-900 font-mono text-xs md:text-sm text-[#111827] dark:text-[#F9FAFB] space-y-3">
+          <div className="p-4 sm:p-5 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] font-mono text-xs md:text-sm text-[#111827] dark:text-[#F9FAFB] space-y-3 overflow-x-auto">
             <div className="text-zinc-400 dark:text-zinc-500 font-sans text-xs font-semibold uppercase tracking-wider">
               Formula: Purity Adjustment &amp; Standardized Spread
             </div>
-            <div className="text-emerald-700 dark:text-emerald-400 font-bold">
+            <div className="text-emerald-700 dark:text-emerald-400 font-bold whitespace-nowrap">
               Pure Gold Content (grams) = Quoted Weight × (Purity / 1000)
             </div>
-            <div className="text-zinc-700 dark:text-zinc-300">
+            <div className="text-zinc-700 dark:text-zinc-300 whitespace-nowrap">
               Normalized Basis Spread (S_t) = P_{`{Near, t}`} - P_{`{Far, t}`} × (Weight_{`{Near}`} / Weight_{`{Far}`})
             </div>
-            <div className="text-[#1E3A8A] dark:text-[#3B82F6] font-semibold">
+            <div className="text-[#1E3A8A] dark:text-[#3B82F6] font-semibold whitespace-nowrap">
               Rolling Z-Score: z_t = (S_t - μ_{`{30D, t}`}) / σ_{`{30D, t}`}
             </div>
           </div>
@@ -63,7 +63,7 @@ export const Methodology: React.FC = () => {
 
       {/* Section 2: Walk-Forward Backtesting */}
       <AnimateIn delay={0.15}>
-        <section className="space-y-4 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-8 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+        <section className="space-y-4 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-8 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950/60 flex items-center justify-center text-[#1E3A8A] dark:text-[#3B82F6]">
               <Clock className="w-4 h-4" />
@@ -78,17 +78,17 @@ export const Methodology: React.FC = () => {
           </p>
 
           {/* Formula Box */}
-          <div className="p-5 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-gray-50 dark:bg-zinc-900 font-mono text-xs md:text-sm text-[#111827] dark:text-[#F9FAFB] space-y-3">
+          <div className="p-4 sm:p-5 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] font-mono text-xs md:text-sm text-[#111827] dark:text-[#F9FAFB] space-y-3 overflow-x-auto">
             <div className="text-zinc-400 dark:text-zinc-500 font-sans text-xs font-semibold uppercase tracking-wider">
               Simulation Regime &amp; Execution Gates
             </div>
-            <div className="text-zinc-700 dark:text-zinc-300">
+            <div className="text-zinc-700 dark:text-zinc-300 whitespace-nowrap">
               Calibration Window: T_{`{calib}`} = [t - 180, t]  |  Execution Window: T_{`{exec}`} = [t, t + 30]
             </div>
-            <div className="text-emerald-700 dark:text-emerald-400 font-bold">
+            <div className="text-emerald-700 dark:text-emerald-400 font-bold whitespace-nowrap">
               Entry Gate: |z_t| &gt; 2.0σ  (Long spread if z &lt; -2.0, Short spread if z &gt; +2.0)
             </div>
-            <div className="text-rose-600 dark:text-rose-400 font-bold">
+            <div className="text-rose-600 dark:text-rose-400 font-bold whitespace-nowrap">
               Exit Gate: |z_t| ≤ 0.25σ (Target Mean Reversion) OR Stop-Loss: |z_t| ≥ 3.5σ
             </div>
           </div>
@@ -101,7 +101,7 @@ export const Methodology: React.FC = () => {
 
       {/* Section 3: Statutory & Exchange Transaction Costs */}
       <AnimateIn delay={0.2}>
-        <section className="space-y-4 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-8 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
+        <section className="space-y-4 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] p-5 sm:p-8 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1E3A8A] dark:hover:border-[#3B82F6]">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950/60 flex items-center justify-center text-[#1E3A8A] dark:text-[#3B82F6]">
               <Receipt className="w-4 h-4" />
@@ -116,7 +116,7 @@ export const Methodology: React.FC = () => {
           </p>
 
           {/* Formula Box */}
-          <div className="p-5 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-gray-50 dark:bg-zinc-900 font-mono text-xs md:text-sm text-[#111827] dark:text-[#F9FAFB] space-y-2.5">
+          <div className="p-4 sm:p-5 rounded-xl border border-[#E5E7EB] dark:border-[#27272A] bg-[#F9FAFB] dark:bg-[#18181B] font-mono text-xs md:text-sm text-[#111827] dark:text-[#F9FAFB] space-y-2.5 overflow-x-auto">
             <div className="text-zinc-400 dark:text-zinc-500 font-sans text-xs font-semibold uppercase tracking-wider">
               Statutory Friction Schedule (MCX Derivatives)
             </div>
@@ -128,7 +128,7 @@ export const Methodology: React.FC = () => {
               <div>• GST on Fees: 18.00%</div>
               <div>• Execution Slippage: 1 Minimum Tick (₹0.50/10g)</div>
             </div>
-            <div className="pt-2 border-t border-[#E5E7EB] dark:border-[#27272A] text-[#1E3A8A] dark:text-[#3B82F6] font-bold">
+            <div className="pt-2 border-t border-[#E5E7EB] dark:border-[#27272A] text-[#1E3A8A] dark:text-[#3B82F6] font-bold whitespace-nowrap">
               Round-Trip Cost = ∑(Exchange Fees + CTT + Stamp Duty + Brokerage) × 1.18 + Slippage
             </div>
           </div>
@@ -137,7 +137,7 @@ export const Methodology: React.FC = () => {
 
       {/* Disclaimer Box */}
       <AnimateIn delay={0.25}>
-        <div className="p-6 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/50 dark:bg-amber-950/20 text-zinc-700 dark:text-zinc-300 space-y-2">
+        <div className="p-5 sm:p-6 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/50 dark:bg-amber-950/20 text-zinc-700 dark:text-zinc-300 space-y-2">
           <div className="flex items-center gap-2 text-amber-700 dark:text-amber-400 font-semibold text-sm">
             <AlertTriangle className="w-4 h-4 shrink-0" />
             Institutional Research &amp; Regulatory Disclaimer
